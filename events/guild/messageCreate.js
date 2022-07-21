@@ -1,3 +1,5 @@
+const { checkDatabase } = require('../../utils/check')
+
 module.exports = async (Discord, client, message) => {
   const prefix = process.env.PREFIX
 
@@ -8,6 +10,8 @@ module.exports = async (Discord, client, message) => {
 
   const commands =
     client.commands.get(cmd) || client.commands.find(c => c.aliases && c.aliases.includes(cmd))
+
+  checkDatabase({ guildId: message.guild.id, prefix })
 
   try {
     commands.execute(client, message, args, cmd, Discord)

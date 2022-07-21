@@ -10,11 +10,13 @@ class DiscordBot {
       Intents.FLAGS.GUILD_MESSAGES,
       Intents.FLAGS.GUILD_VOICE_STATES
     ],
-    handlers: ['command_handler', 'event_handler', 'distube_handler']
+    handlers: ['command_handler', 'event_handler', 'distube_handler', 'suggestions_handler'],
+    color: 'F7EC16'
   }
 
   constructor() {
     this.client = new Client({ intents: this.options.intents })
+    this.client.color = this.options.color
   }
 
   handlers() {
