@@ -14,7 +14,7 @@ module.exports = {
     if (!voiceChannel) return message.channel.send('You are not in voice channel!')
 
     const audioURL = getAudioUrl(messageSpeak, {
-      lang: 'ja',
+      lang: client.language,
       slow: false,
       host: 'https://translate.google.com',
       timeout: 10000
