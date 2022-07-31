@@ -1,3 +1,4 @@
+const express = require('express')
 const { Client, Intents, Collection } = require('discord.js')
 
 const token = process.env.TOKEN_DISCORD
@@ -30,9 +31,22 @@ class DiscordBot {
     this.client.events = new Collection()
   }
 
+  keep_alive() {
+    const server = express()
+    server.all('/', (req, res) => {
+      res.send('Result: [OK]')
+    })
+
+    server.listen(3000, () => {
+      console.log('Server is now ready | ' + Date.now())
+    })
+  }
+
   login() {
     this.collections()
     this.handlers()
+
+    this.keep_alive()
 
     this.client.login(token)
   }
